@@ -12,6 +12,7 @@ function App() {
   const handleName = (event) => {
     setNewName(event.target.value);
   }
+  console.log('names', typeof countries)
 
   useEffect(() => {
     axios
@@ -19,14 +20,15 @@ function App() {
       .then(response => {
         setNewCountries(response.data)
         console.log('countries', response.data)
-        console.log('names', countries)
       })
   }
   ,[])
-
+  console.log('names', typeof countries)
   const namesToShow = countries.filter(country => country.name.common.toUpperCase().includes(newName.toUpperCase()))
 
-  console.log('name to show', namesToShow)
+
+
+  console.log('name to show', typeof namesToShow)
   return (
       <>
         <Filter name={newName} handler={handleName} />

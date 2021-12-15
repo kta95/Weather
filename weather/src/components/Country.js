@@ -1,9 +1,26 @@
 import React from 'react'
 
-const Country = ({data}) => {
+
+const Country = ({data, languages}) => {
+
     const country = data[0];
-    console.log('countries.', country.languages)
-    const languages = country.languages;
+    const newLanguages = [];
+
+
+    const values = Object.values(languages);
+    const keys = Object.keys(languages)
+
+    const newLan = (arr, key, value) => {    
+        arr.push({key: value})
+
+        return arr
+    }
+
+    for (let i = 0; i < keys.length; i++ ) {
+        newLan(newLanguages, keys[i], values[i])
+    }
+
+    console.log('newLan', newLanguages)
     return (
         <>
             <h1>{country.name.common}</h1>
@@ -13,9 +30,17 @@ const Country = ({data}) => {
             <br />
             <h3>Languages </h3>
             <ul>
-                {languages.map((key, value) =>  // need to fix this 
-                    <li > {languages.key}</li>
-                )}
+                {
+                    newLanguages.map(lan => {
+                        console.log('values', typeof value)
+                        return(
+                            <li>{lan.key}</li>
+                            )
+                        
+                    } 
+                )
+                }
+                
             </ul>
             <br />
             <img src={country.flags.png} alt='flag-image' />
