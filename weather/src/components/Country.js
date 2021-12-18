@@ -1,5 +1,5 @@
 import React from 'react'
-
+import Weather from "./Weather"
 
 const Country = ({data, languages}) => {
 
@@ -31,10 +31,10 @@ const Country = ({data, languages}) => {
             <h3>Languages </h3>
             <ul>
                 {
-                    newLanguages.map(lan => {
+                    newLanguages.map((lan, index) => {
                         console.log('values', typeof value)
                         return(
-                            <li>{lan.key}</li>
+                            <li key={index}>{lan.key}</li>
                             )
                         
                     } 
@@ -44,6 +44,7 @@ const Country = ({data, languages}) => {
             </ul>
             <br />
             <img src={country.flags.png} alt='flag-image' />
+            <Weather city={country.capital} />
         </>
     )
 }

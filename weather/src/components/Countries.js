@@ -1,7 +1,7 @@
 import React from 'react'
 import Country from './Country'
 
-const Countries = ({ countries }) => {
+const Countries = ({ countries, showHandler }) => {
     console.log('countries vountries', countries)
     if (countries.length >= 10) {
         return (
@@ -10,8 +10,7 @@ const Countries = ({ countries }) => {
     } else if (countries.length === 1) {
         const country = countries[0];
         console.log('countries.', country.languages)
-        const lan = Object.values(country.languages);
-        console.log('keys.', lan)
+
         const languages = country.languages
         return (
         <Country data={countries} languages={languages} />
@@ -19,7 +18,12 @@ const Countries = ({ countries }) => {
     } else {    
         return (
             <>
-                {countries.map((country, index) => <div key={index}>{country.name.common}</div>)}
+                {countries.map((country, index) => {
+                    return (
+                    <div key={index}>{country.name.common} 
+                    <button onClick={showHandler} country={country.name.common} >show</button></div>
+                    )
+                })}
             </>
     )}
 
